@@ -7,6 +7,7 @@
 /// </summary>
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "NPC.h"
 
 class Game
 {
@@ -23,6 +24,7 @@ public:
 private:
 
 	Player* m_player;
+	NPC* m_NPC;
 
 	void processEvents();
 	void processKeys(sf::Event t_event);

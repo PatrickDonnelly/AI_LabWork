@@ -13,6 +13,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	m_player = new Player(sf::Vector2f{400.0f,300.0f});
+	m_NPC = new NPC(sf::Vector2f{ 100.0f,300.0f });
 }
 
 /// <summary>
@@ -92,7 +93,7 @@ void Game::update(sf::Time t_deltaTime)
 {
 
 	m_player->update(t_deltaTime);
-
+	m_NPC->update(t_deltaTime);
 
 	if (m_exitGame)
 	{
@@ -107,6 +108,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 	m_player->render(m_window);
+	m_NPC->render(m_window);
 	m_window.display();
 }
 
