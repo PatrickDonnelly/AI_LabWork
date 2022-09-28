@@ -16,8 +16,7 @@ class Player
 		void move(sf::Time& t_deltaTime);
 		void update(sf::Time& t_deltaTime);
 		void render(sf::RenderWindow& t_window);
-		void wrapScreen(); 
-		sf::Sprite m_player;
+		void wrapScreen();
 	
 	private:
 
@@ -27,7 +26,7 @@ class Player
 		const float PI = 3.14159f;
 		const float GETRADIANS = 180;
 		sf::Texture m_playerTexture;
-		
+		sf::Sprite m_player;
 		sf::Vector2f m_velocity;
 		float m_speed = 5.0f;
 		sf::Vector2f m_maximumVelocity;

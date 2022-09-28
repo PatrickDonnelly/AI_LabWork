@@ -1,5 +1,4 @@
 #include "Npc.h"
-#include "Math.h"
 
 NPC::NPC(sf::Vector2f t_position)
 {
@@ -31,21 +30,19 @@ void NPC::setUpNPCSprite(sf::Vector2f t_position)
 	}
 	m_NPC.setTexture(m_NPCTexture);
 	m_NPC.setPosition(t_position);
-	m_NPC.setOrigin(m_NPC.getGlobalBounds().width, m_NPC.getGlobalBounds().height);
-	m_NPC.setScale(.4f, .4f);
 }
 
-//void NPC::move(sf::Time& t_deltaTime)
-//{
-//		m_velocity.y -= m_speed * t_deltaTime.asSeconds();
-//}
+void NPC::move(sf::Time& t_deltaTime)
+{
+		m_velocity.y -= m_speed * t_deltaTime.asSeconds();
+}
 
 void NPC::update(sf::Time& t_deltaTime)
 {
-	//move(t_deltaTime);
-	//capNPCVelocity();
-	m_NPC.move(m_velocity * t_deltaTime.asSeconds());
-	//wrapScreen();
+	move(t_deltaTime);
+	capNPCVelocity();
+	m_NPC.move(m_velocity);
+	wrapScreen();
 }
 
 void NPC::render(sf::RenderWindow& t_window)
@@ -63,24 +60,4 @@ void NPC::wrapScreen()
 	{
 		m_NPC.setPosition(m_NPC.getPosition().x, 0 - m_NPC.getGlobalBounds().height);
 	}
-}
-void NPC::kinematicSeek(sf::Vector2f t_targetPosition)
-{
-	if (t_targetPosition != m_NPC.getPosition())
-	{
-		m_velocity = t_targetPosition - m_NPC.getPosition();
-		m_velocity = m_velocity / sqrt((m_velocity.x * m_velocity.x) + (m_velocity.y * m_velocity.y));
-		m_velocity = m_velocity * m_speed;
-		std::cout << "v x : " << m_velocity.x << " v y : " << m_velocity.y << std::endl;
-		if (sqrtf((m_velocity.x * m_velocity.x) + (m_velocity.y * m_velocity.y)) > 0.0f)
-		{
-			m_NPC.setRotation(atan2f(m_velocity.y, m_velocity.x) * (180 / 3.14f));
-		}
-	}
-}
-
-float NPC::getNewOrientation(float t_currentOrientation, sf::Vector2f t_velocity)
-{
-	if (sqrtf((t_velocity.x * t_velocity.x)+(t_velocity.y * t_velocity.y)) > 0.0f) { return atan2f(m_position.y, m_position.x); }
-	else { return t_currentOrientation; }
 }
