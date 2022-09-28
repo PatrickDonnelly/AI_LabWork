@@ -93,7 +93,7 @@ void Game::update(sf::Time t_deltaTime)
 {
 
 	m_player->update(t_deltaTime);
-	m_NPC->kinematicSeek(m_player->m_player.getPosition());
+	m_NPC->kinematicArrive(m_player->m_player.getPosition());
 	m_NPC->update(t_deltaTime);
 	
 
