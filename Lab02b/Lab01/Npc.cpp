@@ -44,10 +44,10 @@ void NPC::update(sf::Time& t_deltaTime)
 {
 	//move(t_deltaTime);
 	//capNPCVelocity();
-	//if (m_velocity.x > m_maximumVelocity.x) { m_velocity.x = m_maximumVelocity.x; }
-	//if (m_velocity.y > m_maximumVelocity.y) { m_velocity.y = m_maximumVelocity.y; }
+	if (m_velocity.x > m_maximumVelocity.x) { m_velocity.x = m_maximumVelocity.x; }
+	if (m_velocity.y > m_maximumVelocity.y) { m_velocity.y = m_maximumVelocity.y; }
 	m_NPC.move(m_velocity * t_deltaTime.asSeconds());
-	//wrapScreen();
+	wrapScreen();
 }
 
 void NPC::render(sf::RenderWindow& t_window)
@@ -61,9 +61,17 @@ void NPC::wrapScreen()
 	{
 		m_NPC.setPosition(m_NPC.getPosition().x, 600 + m_NPC.getGlobalBounds().height);
 	}
-	else if (m_NPC.getPosition().y > 800 + m_NPC.getGlobalBounds().height)
+	else if (m_NPC.getPosition().y > 600 + m_NPC.getGlobalBounds().height)
 	{
 		m_NPC.setPosition(m_NPC.getPosition().x, 0 - m_NPC.getGlobalBounds().height);
+	}
+	else if (m_NPC.getPosition().x < 0 - m_NPC.getGlobalBounds().width)
+	{
+		m_NPC.setPosition(800 + m_NPC.getGlobalBounds().width, m_NPC.getPosition().y);
+	}
+	else if (m_NPC.getPosition().x > 800 + m_NPC.getGlobalBounds().width)
+	{
+		m_NPC.setPosition(0 - m_NPC.getGlobalBounds().width, m_NPC.getPosition().y);
 	}
 }
 void NPC::kinematicSeek(sf::Vector2f t_targetPosition)
@@ -79,6 +87,26 @@ void NPC::kinematicSeek(sf::Vector2f t_targetPosition)
 		{
 		//	m_NPC.setRotation(atan2f(m_velocity.y, m_velocity.x) * (180 / 3.14f));
 		}
+	}
+}
+
+void NPC::kinematicFlee(sf::Vector2f t_targetPosition)
+{
+	if (magnitudeVector(m_NPC.getPosition() - t_targetPosition) <200.0f)
+	{
+		sf::Vector2f t{ 0.0f,0.0f };
+		t = m_NPC.getPosition() - t_targetPosition;
+		t = normaliseVector(t);
+		m_velocity += t * m_speed;
+		std::cout << "v x : " << m_velocity.x << " v y : " << m_velocity.y << std::endl;
+		if (magnitudeVector(m_velocity) > 0.0f)
+		{
+			//	m_NPC.setRotation(atan2f(m_velocity.y, m_velocity.x) * (180 / 3.14f));
+		}
+	}
+	else
+	{
+		m_velocity = m_velocity * 0.9f;
 	}
 }
 

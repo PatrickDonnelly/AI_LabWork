@@ -21,6 +21,7 @@ public:
 	float m_rotation{ 0.0f };
 	float getNewOrientation(float t_currentOrientation, sf::Vector2f t_velocity);
 	void kinematicSeek(sf::Vector2f t_targetPosition);
+	void kinematicFlee(sf::Vector2f t_targetPosition);
 	void kinematicArrive(sf::Vector2f t_targetPosition);
 	sf::Vector2f normaliseVector(sf::Vector2f t_vector);
 	float magnitudeVector(sf::Vector2f t_vector);
