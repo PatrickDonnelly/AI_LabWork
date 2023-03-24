@@ -296,7 +296,7 @@ void Game::initGridObjects()
 	gridWorld.setObstacle(9, 19);
 	gridWorld.setObstacle(0, 19);
 	gridWorld.setObstacle(10, 19);
-	gridWorld.setObstacle(1, 15);
+
 	gridWorld.setObstacle(2, 15);
 	gridWorld.setObstacle(3, 15);
 	gridWorld.setObstacle(4, 15);
@@ -308,6 +308,85 @@ void Game::initGridObjects()
 	gridWorld.setObstacle(9, 15);
 	gridWorld.setObstacle(0, 15);
 	gridWorld.setObstacle(10, 15);
+	gridWorld.setObstacle(10, 18);
+
+	gridWorld.setObstacle(10, 16);
+
+	gridWorld.setObstacle(3, 2);
+	gridWorld.setObstacle(2, 2);
+	gridWorld.setObstacle(1, 2);
+	gridWorld.setObstacle(0, 2);
+
+	gridWorld.setObstacle(5, 0);
+	gridWorld.setObstacle(5, 1);
+	gridWorld.setObstacle(5, 2);
+	gridWorld.setObstacle(5, 3);
+	gridWorld.setObstacle(5, 4);
+
+	gridWorld.setObstacle(0, 8);
+	gridWorld.setObstacle(1, 8);
+	gridWorld.setObstacle(2, 8);
+
+	gridWorld.setObstacle(0, 12);
+	gridWorld.setObstacle(1, 12);
+	gridWorld.setObstacle(2, 12);
+
+	gridWorld.setObstacle(3, 10);
+	gridWorld.setObstacle(4, 10);
+	gridWorld.setObstacle(2, 10);
+
+	gridWorld.setObstacle(2, 17);
+	gridWorld.setObstacle(2, 16);
+	gridWorld.setObstacle(1, 17);
+
+	gridWorld.setObstacle(5, 18);
+	gridWorld.setObstacle(5, 17);
+
+	gridWorld.setObstacle(7, 18);
+	gridWorld.setObstacle(8, 16);	
+	gridWorld.setObstacle(7, 18);
+	gridWorld.setObstacle(8, 16);
+
+
+	gridWorld.setObstacle(19, 10);
+	gridWorld.setObstacle(18, 10);
+	gridWorld.setObstacle(17, 10);
+	gridWorld.setObstacle(16, 10);
+							 
+	gridWorld.setObstacle(15, 10);
+	gridWorld.setObstacle(14, 10);
+	gridWorld.setObstacle(13, 10);
+	gridWorld.setObstacle(12, 10);
+	gridWorld.setObstacle(11, 10);
+	gridWorld.setObstacle(10, 10);
+	gridWorld.setObstacle(9, 10);
+
+	gridWorld.setObstacle(17, 8);
+	gridWorld.setObstacle(16, 8);
+	gridWorld.setObstacle(15, 8);
+
+	gridWorld.setObstacle(19, 16);
+	gridWorld.setObstacle(18, 16);
+	gridWorld.setObstacle(17, 16);
+	gridWorld.setObstacle(16, 16);
+	gridWorld.setObstacle(15, 16);
+	gridWorld.setObstacle(14, 16);
+	gridWorld.setObstacle(13, 10);
+
+	gridWorld.setObstacle(10, 14);
+	gridWorld.setObstacle(10, 13);
+	gridWorld.setObstacle(11, 13);
+	gridWorld.setObstacle(12, 13);
+	gridWorld.setObstacle(13, 13);
+	gridWorld.setObstacle(14, 13);
+	gridWorld.setObstacle(15, 13);
+
+	gridWorld.setObstacle(14, 18);
+	gridWorld.setObstacle(14, 17);
+
+	gridWorld.setObstacle(17, 18);
+	gridWorld.setObstacle(17, 19);
+
 
 }
 

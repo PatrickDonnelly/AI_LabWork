@@ -93,7 +93,7 @@ void Environment::doTimestep(Grid& grid)
 	int currentStateNo = Environment::getStateNoFromXY(currentAgentCoords, grid);
 	int selectedAction = agent.selectAction(currentStateNo);
 	previousAgentCoords = currentAgentCoords;
-	currentAgentCoords = getNextStateXY(previousAgentCoords, selectedAction);
+	currentAgentCoords = getNextStateXY(previousAgentCoords, selectedAction, grid);
 
 	float reward = calculateReward(previousAgentCoords, selectedAction, currentAgentCoords, grid);
 	int nextStateNo = getStateNoFromXY(currentAgentCoords, grid);
@@ -126,14 +126,14 @@ float Environment::calculateReward(sf::Vector2i previousAgentCoords, int selecte
 }
 
 // Models environment transitions (i.e. returns the next state s', given the current state and selected action
-sf::Vector2i Environment::getNextStateXY(sf::Vector2i currentStateXY, int action) 
+sf::Vector2i Environment::getNextStateXY(sf::Vector2i currentStateXY, int action, Grid& grid) 
 {
 	// work out the agent's next position, x=1 y=1 is at the bottom left corner of the grid
 	// actions which would move the agent off the grid will leave its position unchanged		
 	sf::Vector2i nextStateXY = sf::Vector2i(-1, -1);
 
 	if (action == 0) { // move north
-		if (currentStateXY.y > 1) { // ensure agent is not at northmost row
+		if (currentStateXY.y > 1 /*&& !grid.checkForObstacle(currentStateXY.x, currentStateXY.y)*/) { // ensure agent is not at northmost row
 			nextStateXY = sf::Vector2i(currentStateXY.x, currentStateXY.y - 1);
 		}
 		else { // keep agent at current position if this action would move it off the grid
@@ -141,7 +141,7 @@ sf::Vector2i Environment::getNextStateXY(sf::Vector2i currentStateXY, int action
 		}
 	}
 	else if (action == 1) { // move east
-		if (currentStateXY.x < xDimension) { // ensure agent is not at eastmost column
+		if (currentStateXY.x < xDimension /*&& !grid.checkForObstacle(currentStateXY.x, currentStateXY.y)*/) { // ensure agent is not at eastmost column
 			nextStateXY = sf::Vector2i(currentStateXY.x + 1, currentStateXY.y);
 		}
 		else { // keep agent at current position if this action would move it off the grid
@@ -149,7 +149,7 @@ sf::Vector2i Environment::getNextStateXY(sf::Vector2i currentStateXY, int action
 		}
 	}
 	else if (action == 2) { // move south
-		if (currentStateXY.y < yDimension) {  // ensure agent is not at southmost row
+		if (currentStateXY.y < yDimension /*&& !grid.checkForObstacle(currentStateXY.x, currentStateXY.y)*/) {  // ensure agent is not at southmost row
 			nextStateXY = sf::Vector2i(currentStateXY.x, currentStateXY.y + 1);
 		}
 		else { // keep agent at current position if this action would move it off the grid
@@ -157,7 +157,7 @@ sf::Vector2i Environment::getNextStateXY(sf::Vector2i currentStateXY, int action
 		}
 	}
 	else if (action == 3) { // move west
-		if (currentStateXY.x > 1) { // ensure agent is not at westmost column
+		if (currentStateXY.x > 1/* && !grid.checkForObstacle(currentStateXY.x, currentStateXY.y)*/) { // ensure agent is not at westmost column
 			nextStateXY = sf::Vector2i(currentStateXY.x - 1, currentStateXY.y);
 		}
 		else { // keep agent at current position if this action would move it off the grid

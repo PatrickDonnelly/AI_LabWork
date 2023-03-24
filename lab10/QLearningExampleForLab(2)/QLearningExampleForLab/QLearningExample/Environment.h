@@ -58,7 +58,7 @@ public:
 	void doTimestep(Grid& grid);
 	sf::Vector2i getXYFromStateNo(int stateNo, Grid& grid);
 	int getStateNoFromXY(sf::Vector2i state, Grid& grid);
-	sf::Vector2i getNextStateXY(sf::Vector2i currentStateXY, int action);
+	sf::Vector2i getNextStateXY(sf::Vector2i currentStateXY, int action, Grid& grid);
 	float calculateReward(sf::Vector2i previousAgentCoords, int selectedAction, sf::Vector2i currentAgentCoords, Grid& grid);
 	void decayAlpha();
 	void decayEpsilon();

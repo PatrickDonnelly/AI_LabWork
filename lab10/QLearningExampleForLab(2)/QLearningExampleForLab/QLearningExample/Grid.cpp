@@ -52,12 +52,6 @@ float Grid::length(sf::Vector2f t_vect)
     return magn;
 }
 
-void Grid::setObstacle(int x, int y)
-{
-    nodes[x][y].containsObstacle = true;
-    nodes[x][y].UpdateNode();
-}
-
 sf::Vector2f Grid::getGridLocation(int x, int y)
 {
     //float outlineThickness = nodes[x][y].m_rectangle.getOutlineThickness();
@@ -87,14 +81,18 @@ int Grid::getGridCellY(sf::Vector2i location)
 
 bool Grid::checkForObstacle(int x, int y)
 {
-    if (x >= 1 && x < 21 && y >= 1 && y < 21)
+
+    if (nodes[x-1][y-1].containsObstacle == true)
     {
-        if (nodes[x-1][y-1].containsObstacle == true)
-        {
             return true;
-        }
     }
     return false;
+}
+
+void Grid::setObstacle(int x, int y)
+{
+    nodes[x][y].containsObstacle = true;
+    nodes[x][y].UpdateNode();
 }
 
 
